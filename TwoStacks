@@ -1,0 +1,49 @@
+class TwoStacks {
+    int size = 10;
+    int[] arr = new int[size];
+    int top1;
+    int top2;
+    TwoStacks() {
+        top1 = -1;
+        top2 = size;
+    }
+    void push1(int x) {
+        if (top1 + 1 == top2) {
+            System.out.println("Stack Overflow");
+            return;
+        }
+        arr[++top1] = x;
+    }
+    void push2(int x) {
+        if (top1 + 1 == top2) {
+            System.out.println("Stack Overflow");
+            return;
+        }
+        arr[--top2] = x;
+    }
+    int pop1() {
+        if (top1 == -1) {
+            System.out.println("Stack1 Underflow");
+            return -1;
+        }
+        return arr[top1--];
+    }
+    int pop2() {
+        if (top2 == size) {
+            System.out.println("Stack2 Underflow");
+            return -1;
+        }
+        return arr[top2++];
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        TwoStacks ts = new TwoStacks();
+        ts.push1(10);
+        ts.push1(20);
+        ts.push2(100);
+        ts.push2(200);
+        System.out.println("Pop Stack1: " + ts.pop1()); // 20
+        System.out.println("Pop Stack2: " + ts.pop2()); // 200
+    }
+}
